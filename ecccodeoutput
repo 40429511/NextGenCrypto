@@ -1,0 +1,30 @@
+Python 2.7.15 (default, Jul 28 2018, 11:29:29) 
+[GCC 8.1.0] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from os import urandom
+>>> from eccsnacks.curve25519 import scalarmult, scalarmult_base
+>>> import binascii
+>>> 
+>>> l = urandom(32)
+>>> a = scalarmult_base(l)
+>>> 
+>>> e = urandom(32)
+>>> b = scalarmult_base(e)
+>>> 
+>>> c = scalarmult(e, a)
+>>> d = scalarmult(e, b)
+>>> 
+>>> print "RDFID private key: ", binascii.hexlify(e)
+RDFID private key:  002fcb8c0397f90033aa4078721e08400be4852a56ed883e9057ed4b6ad9f275
+>>> print "Reader of RFID private key: ", binascii.hexlify(l)
+Reader of RFID private key:  2b0746888d2791df6edfd6c5f6a501ab287050ad01ebcf4b5aa7d1357d289386
+>>> 
+>>> print "A value: ", binascii.hexlify(a)
+A value:  c60a67f8b8667c586f633386b9b34718dfc85da4a866e5a17ae9b5efde0cec51
+>>> print "B value: ", binascii.hexlify(b)
+B value:  090f3fe3ddda4ec7f1ef4d180c8a21e2f481b7165ab10d20605b5f46a90bc744
+>>> 
+>>> print "C value: ", binascii.hexlify(c)
+C value:  2f68c37d1e33c4582752303fa89f05bd43db7988c996cd9cd37ae4aa2ed5606c
+>>> print "D value: ", binascii.hexlify(d)
+D value:  5613bc048bef762da5e4fc46c833e846190a5a0df5d11ac092d80e203c6de66d
